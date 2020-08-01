@@ -32,6 +32,26 @@ function App() {
       price: 60,
       category: "drink",
     },
+    {
+      name: "pie",
+      price: 70,
+      category: "food"
+
+    },
+    {
+      name: "cola",
+      price: 32,
+      category: "drink",
+    },
+    {
+      name: "coсktail",
+      price: 50,
+      category: "drink",
+    }, {
+      name: "fruit drink",
+      price: 25,
+      category: "drink",
+    }
   ];
   const getCleanOrders = () => {
     return staticProducts.map(elem => ({ name: elem.name, count: 0 }));
