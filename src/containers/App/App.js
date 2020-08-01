@@ -40,14 +40,22 @@ function App() {
     setOrders(copyOrders);
 
   };
-  const findPrice=order=>{
-    return order.count * staticProducts.find(elem => elem.name === order.name).price
-  }
-  const getTotalPrice=()=>{
-    return orders.reduce((acc,order)=>{
-      return acc+findPrice(order)
-    },0)
-  }
+  const findPrice = order => {
+    return order.count * staticProducts.find(elem => elem.name === order.name).price;
+  };
+  const getTotalPrice = () => {
+    return orders.reduce((acc, order) => {
+      return acc + findPrice(order);
+    }, 0);
+  };
+  const deleteOneOrder = (name) => {
+    const copyOrders = [...orders];
+    const index = copyOrders.findIndex(order => order.name === name);
+    const copyOrder = copyOrders[index];
+    copyOrder.count--;
+    copyOrders[index] = copyOrder;
+    setOrders(copyOrders);
+  };
   const ordersList = (
     orders.map(order => (
       <div key={order.name}>
@@ -68,7 +76,7 @@ function App() {
                       )
                   }
                 </span>
-                <button className="order-delete-btn">
+                <button onClick={()=>deleteOneOrder(order.name)} className="order-delete-btn">
                   <i className="fas fa-minus-circle"></i>
                 </button>
               </div>
