@@ -27,28 +27,30 @@ function App() {
       category: "drink",
     },
   ];
-  const [orders, setOrders] = useState([
-    {
-      name: "Hamburger",
-      count: 1,
-    },
-    {
-      name: "Cheeseburger",
-      count: 1,
-    }
-  ]);
-  return (
-    <div className="App">
-      <div className="orders-block">
-        <h3 className="title">Order details</h3>
-        <div className="orders-list">
-          {
-            orders.map(order => (
-              <div className="order" key={order.name}>
+  const setCleanOrders = () => {
+    return staticProducts.map(elem => ({ name: elem.name, count: 0 }));
+  };
+  const [orders, setOrders] = useState(setCleanOrders());
+  const addOrder = (name) => {
+    const copyOrders = [...orders];
+    const index = copyOrders.findIndex(order => order.name === name);
+    const copyOrder = copyOrders[index];
+    copyOrder.count++;
+    copyOrders[index] = copyOrder;
+    setOrders(copyOrders);
+
+  };
+  const ordersList = (
+    orders.map(order => (
+      <div key={order.name}>
+        {
+          order.count ?
+            (
+              < div className="order">
                 <h4 className="order-name">
                   <span className="order-count">x{order.count}</span> {order.name}
                 </h4>
-                <span className="order-price">{order.count * 12} KGS</span>
+                <span className="order-price">{order.count * staticProducts.find(elem => elem.name === order.name).price} KGS</span>
                 <span>
                   {
                     staticProducts.find(elem => elem.name === order.name).category === "food" ? (
@@ -62,7 +64,35 @@ function App() {
                   <i className="fas fa-minus-circle"></i>
                 </button>
               </div>
-            ))
+            )
+            : (
+              <></>
+            )
+        }
+      </div>
+    ))
+  );
+  return (
+    <div className="App">
+      <div className="orders-block">
+        <h3 className="title">Order details</h3>
+        <div className="orders-list">
+          {orders.reduce((acc, order) => {
+            if (order.count || acc) {
+              return true;
+            }
+            return false;
+          }, false)
+            ?
+            (ordersList)
+            :
+            (
+              <span style={{ color: "#fff", fontSize: "20px" }}>
+                Order is empty!
+                <br />
+                please add some items!
+              </span>
+            )
           }
         </div>
         <div className="total-price">Total price: {12}</div>
@@ -71,7 +101,7 @@ function App() {
         <h3 className="title">Add items</h3>
         <div className="all-products">
           {staticProducts.map(elem => (
-            <div className="static-product" key={elem.name}>
+            <div className="static-product" key={elem.name} onClick={() => addOrder(elem.name)}>
               <div className="static-product-left">
                 <h4 className="static-product-name">{elem.name}</h4>
                 <span className="static-product-price">Price: {elem.price} KGS</span>
@@ -89,7 +119,7 @@ function App() {
           ))}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
