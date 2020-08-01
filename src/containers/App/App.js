@@ -40,6 +40,14 @@ function App() {
     setOrders(copyOrders);
 
   };
+  const findPrice=order=>{
+    return order.count * staticProducts.find(elem => elem.name === order.name).price
+  }
+  const getTotalPrice=()=>{
+    return orders.reduce((acc,order)=>{
+      return acc+findPrice(order)
+    },0)
+  }
   const ordersList = (
     orders.map(order => (
       <div key={order.name}>
@@ -50,7 +58,7 @@ function App() {
                 <h4 className="order-name">
                   <span className="order-count">x{order.count}</span> {order.name}
                 </h4>
-                <span className="order-price">{order.count * staticProducts.find(elem => elem.name === order.name).price} KGS</span>
+                <span className="order-price">{findPrice(order)} KGS</span>
                 <span>
                   {
                     staticProducts.find(elem => elem.name === order.name).category === "food" ? (
@@ -95,7 +103,7 @@ function App() {
             )
           }
         </div>
-        <div className="total-price">Total price: {12}</div>
+        <div className="total-price">Total price: {getTotalPrice()}</div>
       </div>
       <div className="product-block">
         <h3 className="title">Add items</h3>
