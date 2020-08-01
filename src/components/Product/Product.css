@@ -1,0 +1,23 @@
+.static-product{
+    width: 45%;
+    background-color: #fff;
+    padding: 10px 0 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.static-product-right{
+    font-size: 35px;
+    margin-right: 20px;
+}
+
+.static-product-name{
+    font-size: 26px;
+    padding: 10px 0;
+    margin: 0;
+}
+.static-product-price{
+    color: rgb(23, 95, 0);
+}

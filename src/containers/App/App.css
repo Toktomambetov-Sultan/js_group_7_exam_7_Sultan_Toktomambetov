@@ -15,6 +15,9 @@ body{
 .orders-block{
     width: 40%;
     background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
 }
 .product-block{
     width: 60%;
@@ -34,29 +37,7 @@ body{
     padding: 10px;
     flex-wrap: wrap;
 }
-.static-product{
-    width: 45%;
-    background-color: #fff;
-    padding: 10px 0 10px 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.static-product-right{
-    font-size: 35px;
-    margin-right: 20px;
-}
 
-.static-product-name{
-    font-size: 26px;
-    padding: 10px 0;
-    margin: 0;
-}
-.static-product-price{
-    color: rgb(23, 95, 0);
-}
 .orders-block .title{
     background-color: #ccc;
     color: rgb(1, 14, 70);
@@ -64,47 +45,12 @@ body{
     padding: 5px 10px;
     font-size: 30px;
 }
-.orders-list{
-    padding: 10px;
-}
-.order{
-    background-color: #fff;
+
+
+.orders-block__bottom{
     display: flex;
     justify-content: space-between;
-    padding: 10px 10px 10px 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
     align-items: center;
-}
-.order-name{
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-}
-.order-delete-btn{
-    border: none;
-    color: rgb(255, 0, 0);
-    background-color: transparent;
-    font-size: 24px;
-    outline: none;
-    border-radius: 50%;
-    transition: text-shadow 0.1s;
-}
-.order-delete-btn:focus,
-.order-delete-btn:active{
-    outline: none;
-}
-.order-delete-btn:active{
-    text-shadow: 0 0 10px rgb(255, 0, 0);
-}
-.order-count{
-    color: rgb(0, 4, 255);
-}
-.order-price{
-    color: rgb(23, 95, 0);
-}
-.total-price{
-    color: rgb(72, 255, 0);
-    font-size: 26px;
-    padding: 10px;
+    margin-top: auto;
+    margin-bottom: 10px;
 }
